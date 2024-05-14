@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class contactService {
@@ -34,8 +35,12 @@ public class contactService {
         }
         return result;
     }
-
     public boolean existContact(Integer id){
         return contactRepository.existsById(id);
+    }
+
+    public boolean isEmailAlreadyUsed(String email){
+        Optional<Contact> contact = contactRepository.getByEmail(email);
+        return contact.isPresent();
     }
 }
