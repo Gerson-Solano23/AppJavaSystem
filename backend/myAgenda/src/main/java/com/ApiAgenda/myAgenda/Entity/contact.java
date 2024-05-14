@@ -5,6 +5,8 @@ import lombok.*;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -30,11 +32,15 @@ public class Contact {
 
     @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    @NonNull
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private String dateRegistry;
+    private LocalDate dateRegistry;
+
+    @PrePersist
+    public void prePersist() {
+        this.dateRegistry = LocalDate.now();
+    }
 }
 /*
     * id -> INT

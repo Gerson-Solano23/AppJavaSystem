@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Objects;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,4 +16,5 @@ import lombok.NoArgsConstructor;
 public class ResponseDTO {
     public String message;
     public String status;
+    public List<Objects> elements;
 }
