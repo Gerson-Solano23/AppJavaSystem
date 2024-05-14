@@ -5,15 +5,13 @@ import lombok.*;
 import org.hibernate.annotations.BatchSize;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
 @Entity
-@Table(name = "contact")
-public class contact {
+@Table(name = "Contact")
+public class Contact {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idContact;
