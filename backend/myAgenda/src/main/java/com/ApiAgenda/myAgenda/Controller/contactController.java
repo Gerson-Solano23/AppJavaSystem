@@ -40,7 +40,7 @@ public class contactController {
     public ResponseEntity<List<Contact>> getAll(){
         return ResponseEntity.ok(service.getAllContacts());
     }
-    @PutMapping("/create")
+    @PostMapping("/create")
     public ResponseEntity<ResponseDTO> createCategory(@RequestBody Contact contact){
         ResponseDTO response = new ResponseDTO();
         response.setMessage("Succesufully, contact save");
@@ -57,7 +57,7 @@ public class contactController {
         }
         return ResponseEntity.ok(response);
     }
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<?> updateCategory(@RequestBody Contact contact){
         ResponseDTO response = new ResponseDTO();
         try {
