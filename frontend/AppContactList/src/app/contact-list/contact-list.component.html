@@ -1,1 +1,28 @@
-<p>contact-list works!</p>
+<h2 class="mb-5">My Contacts</h2>
+
+<div class="text-end pb-3">
+  <button class="btn btn-primary" routerLink="/newContact">Add Contact</button>
+</div>
+
+<table class="table table-hover table-dark">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Email</th>
+      <th>Phone</th>
+      <th>Date of Birth</th>
+    </tr>
+  </thead>
+  <tbody>
+    @for(contact of contacts; track contact.id){
+    <tr>
+      <td>{{ contact.idContact }}</td>
+      <td>{{ contact.name }}</td>
+      <td>{{ contact.email }}</td>
+      <td>{{ contact.phone }}</td>
+      <td>{{ contact.dateOfBirth | date : "dd/MM/yyyy hh:mm a" }}</td>
+    </tr>
+    }
+  </tbody>
+</table>
