@@ -7,5 +7,3 @@ import { provideHttpClient } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
   providers: [provideRouter(routes), provideHttpClient()],
 };
-
-//https://youtu.be/zTSDxPFacGg?t=5671
