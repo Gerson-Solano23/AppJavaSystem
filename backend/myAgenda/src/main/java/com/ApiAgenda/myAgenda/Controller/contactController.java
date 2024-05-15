@@ -13,7 +13,7 @@ import java.util.List;
 import java.util.Objects;
 
 @RestController
-@RequestMapping("/contact")
+@RequestMapping("/api/contact")
 public class contactController {
     @Autowired
     private contactService service;
