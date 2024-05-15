@@ -1,0 +1,45 @@
+<div class="container mx-auto">
+  <h2 class="mb-5">Create new contact</h2>
+  <form class="row">
+    <div class="col-md-8">
+      <!-- Campos de entrada aquí -->
+      <div class="mb-3">
+        <label for="name">Name</label>
+        <input id="name" type="text" placeholder="Name" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="email">Email</label>
+        <input
+          id="email"
+          type="email"
+          placeholder="Email"
+          class="form-control"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="phone">Phone</label>
+        <input
+          id="Phone"
+          type="number"
+          placeholder="Phone"
+          class="form-control"
+        />
+      </div>
+      <div class="mb-3">
+        <label for="name">Date of Birth</label>
+        <input
+          id="DateOfBirth"
+          type="date"
+          placeholder="Date of birth"
+          class="form-control"
+        />
+      </div>
+      <div class="text-end">
+        <button type="button" class="btn btn-success btn-sm">Save</button>
+        <button class="btn btn-danger ms-3 btn-sm" routerLink="/">
+          Cancel
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
