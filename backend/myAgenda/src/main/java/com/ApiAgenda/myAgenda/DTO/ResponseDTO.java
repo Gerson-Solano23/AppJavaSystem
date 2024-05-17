@@ -1,4 +1,4 @@
-package com.ApiAgenda.myAgenda.Entity;
+package com.ApiAgenda.myAgenda.DTO;
 
 import jakarta.persistence.Entity;
 import lombok.AllArgsConstructor;
