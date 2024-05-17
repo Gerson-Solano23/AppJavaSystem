@@ -1,7 +1,9 @@
 package com.ApiAgenda.myAgenda.Service;
 
+import com.ApiAgenda.myAgenda.DTO.ContactDTO;
 import com.ApiAgenda.myAgenda.Entity.Contact;
 import com.ApiAgenda.myAgenda.Repository.contactRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,15 +15,20 @@ public class contactService {
     @Autowired
     private contactRepository contactRepository;
 
-    public Contact addContact(Contact contact){return contactRepository.save(contact);}
+    public Contact addContact(ContactDTO contactDTO){
+        ModelMapper  mapper = new ModelMapper();
+        Contact contact = new Contact();
+        mapper.map(contactDTO, contact);
+        return contactRepository.save(contact);
+    }
     public Contact getContact(Integer idContact){return contactRepository.findById(idContact).orElse(null);}
     public List<Contact> getAllContacts(){return (List<Contact>) contactRepository.findAll();}
-    public Contact updateContact(Contact contact){
-        Contact existContact = contactRepository.findById(contact.getIdContact()).orElse(null);
-        existContact.setName(contact.getName());
-        existContact.setPhone(contact.getPhone());
-        existContact.setEmail(contact.getEmail());
-        existContact.setDateOfBirth(contact.getDateOfBirth());
+    public Contact updateContact(int id, ContactDTO contactDTO){
+        ModelMapper  mapper = new ModelMapper();
+
+        Contact existContact = contactRepository.findById(id).orElse(null);
+        mapper.map(contactDTO, existContact);
+
         return contactRepository.save(existContact);
     }
 
