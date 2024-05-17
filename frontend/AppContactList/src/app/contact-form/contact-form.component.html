@@ -1,11 +1,21 @@
 <div class="container mx-auto">
-  <h2 class="mb-5">Create new contact</h2>
-  <form class="row">
+  <h2 class="mb-5">{{ contact ? "Update" : "Create new" }} contact</h2>
+  @if(form){
+  <form class="row" [formGroup]="form" (ngSubmit)="save()">
     <div class="col-md-8">
       <!-- Campos de entrada aquí -->
       <div class="mb-3">
         <label for="name">Name</label>
-        <input id="name" type="text" placeholder="Name" class="form-control" />
+        <input
+          id="name"
+          type="text"
+          placeholder="Name"
+          class="form-control"
+          formControlName="name"
+        />
+        @if(form.get('name')?.hasError('required')){
+        <p class="invalid-feedback d-block">Name is required</p>
+        }
       </div>
       <div class="mb-3">
         <label for="email">Email</label>
@@ -14,32 +24,55 @@
           type="email"
           placeholder="Email"
           class="form-control"
+          formControlName="email"
         />
+        @if(form.get('email')?.hasError('required')){
+        <p class="invalid-feedback d-block">Email is required</p>
+        } @if(form.get('email')?.hasError('email')){
+        <p class="invalid-feedback d-block">Email is invalid</p>
+        }
       </div>
       <div class="mb-3">
         <label for="phone">Phone</label>
         <input
-          id="Phone"
-          type="number"
+          id="phone"
+          type="phone"
           placeholder="Phone"
           class="form-control"
+          formControlName="phone"
         />
+        @if(form.get('phone')?.hasError('required')){
+        <p class="invalid-feedback d-block">Phone is required</p>
+        } @else{ @if(form.get('phone')?.hasError('pattern')){
+        <p class="invalid-feedback d-block">Phone is invalid</p>
+        }@if(form.get('phone')?.hasError('minlength')){
+        <p class="invalid-feedback d-block">Phone is too short</p>
+        }@if(form.get('phone')?.hasError('maxlength')){
+        <p class="invalid-feedback d-block">Phone is too long</p>
+        } }
       </div>
       <div class="mb-3">
         <label for="name">Date of Birth</label>
         <input
-          id="DateOfBirth"
+          id="dateOfBirth"
           type="date"
           placeholder="Date of birth"
           class="form-control"
+          formControlName="dateOfBirth"
         />
+        @if(form.get('dateOfBirth')?.hasError('required')){
+        <p class="invalid-feedback d-block">Date of birth is required</p>
+        }
       </div>
       <div class="text-end">
-        <button type="button" class="btn btn-success btn-sm">Save</button>
-        <button class="btn btn-danger ms-3 btn-sm" routerLink="/">
+        <button type="button" class="btn btn-danger" routerLink="/">
           Cancel
+        </button>
+        <button class="btn btn-success btn-sm ms-2">
+          {{ contact ? "Update" : "Save" }}
         </button>
       </div>
     </div>
   </form>
+  }
 </div>

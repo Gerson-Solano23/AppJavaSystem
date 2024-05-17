@@ -9,4 +9,8 @@ export const routes: Routes = [
     path: 'newContact',
     loadComponent: () => import('./contact-form/contact-form.component'),
   },
+  {
+    path: ':id/update',
+    loadComponent: () => import('./contact-form/contact-form.component'),
+  },
 ];
