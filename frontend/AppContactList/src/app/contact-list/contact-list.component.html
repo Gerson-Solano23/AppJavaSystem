@@ -12,16 +12,30 @@
       <th>Email</th>
       <th>Phone</th>
       <th>Date of Birth</th>
+      <th class="text-center">Actions</th>
     </tr>
   </thead>
   <tbody>
-    @for(contact of contacts; track contact.id){
+    @for(contact of contacts; track contact.idContact; let idx = $index){
     <tr>
-      <td>{{ contact.idContact }}</td>
+      <td>{{ idx + 1 }}</td>
       <td>{{ contact.name }}</td>
       <td>{{ contact.email }}</td>
       <td>{{ contact.phone }}</td>
-      <td>{{ contact.dateOfBirth | date : "dd/MM/yyyy hh:mm a" }}</td>
+      <td>{{ contact.dateOfBirth | date : "dd/MM/yyyy" }}</td>
+      <td class="text-center align-middle">
+        <div class="btn-group align-items-center">
+          <button
+            class="btn btn-warning"
+            [routerLink]="[contact.idContact, 'update']"
+          >
+            Update
+          </button>
+          <button class="btn btn-danger" (click)="delete(contact.idContact)">
+            Delete
+          </button>
+        </div>
+      </td>
     </tr>
     }
   </tbody>

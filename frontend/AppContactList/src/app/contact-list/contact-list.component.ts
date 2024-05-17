@@ -1,7 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { ContactService } from '../services/contact.service';
 import { DatePipe } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
+import { Contact } from '../model/contact.interface';
 
 @Component({
   selector: 'app-contact-list',
@@ -12,13 +13,27 @@ import { RouterModule } from '@angular/router';
 })
 export default class ContactListComponent implements OnInit {
   private contactService = inject(ContactService);
-
-  contacts: any[] = [];
+  private router = inject(Router);
+  index = 0;
+  contacts: Contact[] = [];
 
   ngOnInit(): void {
-    this.contactService.list().subscribe((contacts: any) => {
+    this.reloadData();
+  }
+  reloadData() {
+    this.contactService.list().subscribe((contacts) => {
       this.contacts = contacts;
+      this.index = contacts.length;
       console.log(contacts);
+    });
+  }
+  delete(idContact: number) {
+    console.log(idContact);
+    this.contactService.delete(idContact).subscribe((response) => {
+      console.log(response);
+      if (response.status === '200') {
+        this.reloadData();
+      }
     });
   }
 }
